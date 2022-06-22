@@ -1,4 +1,3 @@
-let globalID = 6
 
 module.exports = {
 
@@ -31,30 +30,39 @@ module.exports = {
       
         res.status(200).send(randomCharacter);
     },
-
-    deleteFortune: (req, res) => {
-        const fortune = ["You'll win a dollar!", "Friend's aren't that far away", "Follow a rainbow to find rain", "Enjoy food for you may die.", "This may be dog but idk."];
-        fortune.splice(0, 5)
-        res.status(200).send(`Fortunes left:${fortune}`)
-    },
-
-    newFortune: (req, res) => {
-        let newone = req.body
-        fortune.push(newone)
-        globalID++
-        res.status(200).send(fortune)
-    },
-
     getMoney: (req, res) => {
         const money = "$1,000,000,000"
         res.status(200).send(money)
     },
 
-    suprise: (req, res) => {
-        const suprise = "BOO"
-        res.status(200).send(suprise)
+    surprise: (req, res) => {
+        const surprise = "BOO"
+        res.status(200).send(surprise)
+    },
+
+    createUser: (req, res) => {
+        database.push(req.body)
+        console.log(database)
+        res.status(200).send({success: true})
+    },
+
+    changeUser: (req, res) => {
+        database[0].lName = (req.body.lName2)
+        console.log(database)
+        res.status(200).send({success: true})
+    },
+
+    deleteUsers: (req, res) => {
+        database.splice(0, database.length)
+        console.log(database)
+        res.status(200).send({success: true})
     }
 
-
-
 }
+
+const database = [
+        {
+            fName: 'Nathan',
+            lName: 'Westergard'
+        },
+]
